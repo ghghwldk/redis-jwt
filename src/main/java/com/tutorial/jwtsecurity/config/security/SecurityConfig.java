@@ -1,4 +1,4 @@
-package com.tutorial.jwtsecurity.config;
+package com.tutorial.jwtsecurity.config.security;
 
 import com.tutorial.jwtsecurity.jwt.JwtAccessDeniedHandler;
 import com.tutorial.jwtsecurity.jwt.JwtAuthenticationEntryPoint;

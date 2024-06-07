@@ -1,4 +1,4 @@
-package com.tutorial.jwtsecurity.config;
+package com.tutorial.jwtsecurity.config.security;
 
 import com.tutorial.jwtsecurity.jwt.JwtFilter;
 import com.tutorial.jwtsecurity.jwt.TokenUtil;
