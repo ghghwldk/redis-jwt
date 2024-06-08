@@ -22,6 +22,7 @@ public class RefreshToken {
     @Column(name = "rt_value")
     private String value;
 
+
     @Builder
     public RefreshToken(String key, String value) {
         this.key = key;
