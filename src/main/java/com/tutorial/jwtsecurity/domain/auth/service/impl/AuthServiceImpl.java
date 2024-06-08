@@ -1,9 +1,11 @@
-package com.tutorial.jwtsecurity.domain.auth.service;
+package com.tutorial.jwtsecurity.domain.auth.service.impl;
 
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberRequestDto;
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberResponseDto;
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenDto;
 import com.tutorial.jwtsecurity.domain.auth.entity.Member;
+import com.tutorial.jwtsecurity.domain.auth.service.AuthService;
+import com.tutorial.jwtsecurity.domain.auth.service.TokenService;
 import com.tutorial.jwtsecurity.global.security.JwtUtil;
 import com.tutorial.jwtsecurity.domain.auth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService{
+public class AuthServiceImpl implements AuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;

@@ -1,9 +1,10 @@
-package com.tutorial.jwtsecurity.domain.auth.service;
+package com.tutorial.jwtsecurity.domain.auth.service.impl;
 
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenDto;
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenRequestDto;
 import com.tutorial.jwtsecurity.domain.auth.entity.Token;
 import com.tutorial.jwtsecurity.domain.auth.repository.TokenRepository;
+import com.tutorial.jwtsecurity.domain.auth.service.TokenService;
 import com.tutorial.jwtsecurity.global.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;

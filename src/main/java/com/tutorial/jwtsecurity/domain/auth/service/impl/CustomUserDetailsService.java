@@ -1,4 +1,4 @@
-package com.tutorial.jwtsecurity.domain.auth.service;
+package com.tutorial.jwtsecurity.domain.auth.service.impl;
 
 import com.tutorial.jwtsecurity.domain.auth.entity.Member;
 import com.tutorial.jwtsecurity.domain.auth.repository.MemberRepository;

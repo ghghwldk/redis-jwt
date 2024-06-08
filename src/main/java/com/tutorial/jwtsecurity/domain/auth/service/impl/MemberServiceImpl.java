@@ -1,7 +1,8 @@
-package com.tutorial.jwtsecurity.domain.auth.service;
+package com.tutorial.jwtsecurity.domain.auth.service.impl;
 
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberResponseDto;
 import com.tutorial.jwtsecurity.domain.auth.repository.MemberRepository;
+import com.tutorial.jwtsecurity.domain.auth.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override

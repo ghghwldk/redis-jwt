@@ -1,7 +1,7 @@
 package com.tutorial.jwtsecurity.domain.auth.controller;
 
 import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberResponseDto;
-import com.tutorial.jwtsecurity.domain.auth.service.MemberServiceImpl;
+import com.tutorial.jwtsecurity.domain.auth.service.impl.MemberServiceImpl;
 import com.tutorial.jwtsecurity.global.security.SpringSecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
