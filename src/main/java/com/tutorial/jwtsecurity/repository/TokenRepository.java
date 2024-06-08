@@ -1,13 +1,12 @@
 package com.tutorial.jwtsecurity.repository;
 
-import com.tutorial.jwtsecurity.entity.RefreshToken;
+import com.tutorial.jwtsecurity.entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RefreshTokenRepository extends JpaRepository<RefreshToken, String> {
-    Optional<RefreshToken> findByKey(String key);
+public interface TokenRepository extends JpaRepository<Token, String> {
+    Optional<Token> findByKey(String key);
 }

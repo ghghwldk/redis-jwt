@@ -6,6 +6,7 @@ import com.tutorial.jwtsecurity.controller.dto.MemberResponseDto;
 import com.tutorial.jwtsecurity.controller.dto.TokenRequestDto;
 import com.tutorial.jwtsecurity.controller.dto.TokenDto;
 import com.tutorial.jwtsecurity.service.AuthService;
+import com.tutorial.jwtsecurity.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+    private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/signup")
     public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto memberRequestDto) {
@@ -31,6 +33,6 @@ public class AuthController {
 
     @PostMapping("/reissue")
     public ResponseEntity<TokenDto> reissue(@RequestBody TokenRequestDto tokenRequestDto) {
-        return ResponseEntity.ok(authService.reissue(tokenRequestDto));
+        return ResponseEntity.ok(refreshTokenService.reissue(tokenRequestDto));
     }
 }

@@ -34,7 +34,8 @@ public class TokenUtil {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenDto generateTokenDto(Authentication authentication) {
+
+    public TokenDto generateTokenDto(Authentication authentication, String previousRefreshToken) {
         // 권한들 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -42,7 +43,6 @@ public class TokenUtil {
 
         long now = (new Date()).getTime();
 
-        // Access Token 생성
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())       // payload "sub": "name"
@@ -51,8 +51,9 @@ public class TokenUtil {
                 .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"
                 .compact();
 
-        // Refresh Token 생성
-        String refreshToken = Jwts.builder()
+        String refreshToken = previousRefreshToken != null
+                ? previousRefreshToken
+                : Jwts.builder()
                 .setExpiration(new Date(now + REFRESH_TOKEN_EXPIRE_TIME))
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();

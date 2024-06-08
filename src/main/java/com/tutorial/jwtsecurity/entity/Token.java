@@ -11,26 +11,21 @@ import javax.persistence.Table;
 
 @Getter
 @NoArgsConstructor
-@Table(name = "refresh_token")
+@Table(name = "token")
 @Entity
-public class RefreshToken {
-
+public class Token {
     @Id
-    @Column(name = "rt_key")
-    private String key;
-
-    @Column(name = "rt_value")
-    private String value;
+    private String refreshToken;
+    private String accessToken;
 
 
     @Builder
-    public RefreshToken(String key, String value) {
-        this.key = key;
-        this.value = value;
+    public Token(String refreshToken, String accessToken) {
+        this.refreshToken = refreshToken;
+        this.accessToken = accessToken;
     }
 
-    public RefreshToken updateValue(String token) {
-        this.value = token;
-        return this;
+    public void updateAccessToken(String token) {
+        this.accessToken = token;
     }
 }
