@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 public interface TokenService {
-    Optional<String> get(String refreshToken);
+    Optional<String> exist(String refreshToken);
 
     ReissueResponseDto reissue(ReissueRequestDto reissueRequestDto, HttpServletResponse response);
 

@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
@@ -33,15 +32,19 @@ public class TokenServiceImpl
 
     @Cacheable(value = "refreshToken", key = "#refreshToken", cacheManager = "cacheManager")
     @Override
-    public Optional<String> get(String refreshToken){
+    public Optional<String> exist(String refreshToken){
         Optional<Token> opt = tokenRepository.findById(refreshToken);
-        return opt.map(Token::getAccessToken);
+        return opt.map(Token::getRefreshToken);
     }
 
     @Override
     public ReissueResponseDto reissue
             (ReissueRequestDto reissueRequestDto, HttpServletResponse response){
         String refreshToken = getRefreshToken();
+
+        if(exist(refreshToken).isEmpty()){
+            throw new RuntimeException("로그인된 사용자가 아닙니다.");
+        }
 
         if (!jwtUtil.validateToken(refreshToken)) {
             throw new RuntimeException("Refresh Token 이 유효하지 않습니다.");
