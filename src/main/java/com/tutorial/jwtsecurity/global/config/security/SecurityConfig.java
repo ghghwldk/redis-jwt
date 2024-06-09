@@ -2,7 +2,7 @@ package com.tutorial.jwtsecurity.global.config.security;
 
 import com.tutorial.jwtsecurity.global.security.JwtAccessDeniedHandler;
 import com.tutorial.jwtsecurity.global.security.JwtAuthenticationEntryPoint;
-import com.tutorial.jwtsecurity.global.security.JwtUtil;
+import com.tutorial.jwtsecurity.domain.auth.service.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

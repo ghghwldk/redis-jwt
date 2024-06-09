@@ -1,12 +1,10 @@
 package com.tutorial.jwtsecurity.domain.auth.service.impl;
 
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberRequestDto;
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberResponseDto;
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenDto;
+import com.tutorial.jwtsecurity.domain.auth.controller.dto.*;
 import com.tutorial.jwtsecurity.domain.auth.entity.Member;
 import com.tutorial.jwtsecurity.domain.auth.service.AuthService;
 import com.tutorial.jwtsecurity.domain.auth.service.TokenService;
-import com.tutorial.jwtsecurity.global.security.JwtUtil;
+import com.tutorial.jwtsecurity.domain.auth.service.util.JwtUtil;
 import com.tutorial.jwtsecurity.domain.auth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 @Transactional(readOnly = true)
@@ -39,17 +39,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional
     @Override
-    public TokenDto login(MemberRequestDto memberRequestDto) {
+    public SigninResponseDto signin(SigninRequestDto dto, HttpServletResponse response) {
         UsernamePasswordAuthenticationToken authenticationToken =
-                memberRequestDto.toAuthentication();
+                dto.toAuthentication();
+
         Authentication authentication =
                 authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-        TokenDto tokenDto =
-                jwtUtil.generateTokenDto(authentication, null);
-
-        tokenService.save(tokenDto);
-
-        return tokenDto;
+        return tokenService.issue(authentication, response);
     }
 }

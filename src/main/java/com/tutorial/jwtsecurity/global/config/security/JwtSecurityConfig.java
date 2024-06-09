@@ -1,7 +1,7 @@
 package com.tutorial.jwtsecurity.global.config.security;
 
 import com.tutorial.jwtsecurity.global.security.JwtFilter;
-import com.tutorial.jwtsecurity.global.security.JwtUtil;
+import com.tutorial.jwtsecurity.domain.auth.service.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

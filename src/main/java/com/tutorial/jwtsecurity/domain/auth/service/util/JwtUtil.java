@@ -1,6 +1,6 @@
-package com.tutorial.jwtsecurity.global.security;
+package com.tutorial.jwtsecurity.domain.auth.service.util;
 
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenDto;
+import com.tutorial.jwtsecurity.domain.auth.vo.TokenVo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -25,7 +25,7 @@ public class JwtUtil {
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "Bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;
-    private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;
+    public static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;
 
     private final Key key;
 
@@ -35,7 +35,7 @@ public class JwtUtil {
     }
 
 
-    public TokenDto generateTokenDto(Authentication authentication, String previousRefreshToken) {
+    public TokenVo generateTokenVo(Authentication authentication, String previousRefreshToken) {
         // 권한들 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -58,7 +58,7 @@ public class JwtUtil {
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
 
-        return TokenDto.builder()
+        return TokenVo.builder()
                 .grantType(BEARER_TYPE)
                 .accessToken(accessToken)
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())

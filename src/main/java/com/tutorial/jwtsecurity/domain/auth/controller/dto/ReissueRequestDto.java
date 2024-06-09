@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class TokenRequestDto {
+public class ReissueRequestDto {
     private String accessToken;
-    private String refreshToken;
 }

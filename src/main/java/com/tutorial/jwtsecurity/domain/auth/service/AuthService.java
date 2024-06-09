@@ -1,14 +1,14 @@
 package com.tutorial.jwtsecurity.domain.auth.service;
 
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberRequestDto;
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.MemberResponseDto;
-import com.tutorial.jwtsecurity.domain.auth.controller.dto.TokenDto;
+import com.tutorial.jwtsecurity.domain.auth.controller.dto.*;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletResponse;
 
 public interface AuthService {
     @Transactional
     MemberResponseDto signup(MemberRequestDto memberRequestDto);
 
     @Transactional
-    TokenDto login(MemberRequestDto memberRequestDto);
+    SigninResponseDto signin(SigninRequestDto memberRequestDto, HttpServletResponse response);
 }

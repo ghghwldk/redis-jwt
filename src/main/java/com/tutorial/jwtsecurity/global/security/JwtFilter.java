@@ -1,5 +1,6 @@
 package com.tutorial.jwtsecurity.global.security;
 
+import com.tutorial.jwtsecurity.domain.auth.service.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

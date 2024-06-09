@@ -2,14 +2,16 @@ package com.tutorial.jwtsecurity.domain.auth.controller.dto;
 
 import com.tutorial.jwtsecurity.domain.auth.entity.Authority;
 import com.tutorial.jwtsecurity.domain.auth.entity.Member;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberRequestDto {
+public class SigninRequestDto {
 
     private String email;
     private String password;
@@ -22,5 +24,7 @@ public class MemberRequestDto {
                 .build();
     }
 
-
+    public UsernamePasswordAuthenticationToken toAuthentication() {
+        return new UsernamePasswordAuthenticationToken(email, password);
+    }
 }
