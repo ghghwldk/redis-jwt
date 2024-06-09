@@ -32,7 +32,7 @@ public class TokenServiceImpl
 
     @Cacheable(value = "refreshToken", key = "#refreshToken", cacheManager = "cacheManager")
     @Override
-    public Optional<String> exist(String refreshToken){
+    public Optional<String> find(String refreshToken){
         Optional<Token> opt = tokenRepository.findById(refreshToken);
         return opt.map(Token::getRefreshToken);
     }
@@ -42,7 +42,7 @@ public class TokenServiceImpl
             (ReissueRequestDto reissueRequestDto, HttpServletResponse response){
         String refreshToken = getRefreshToken();
 
-        if(exist(refreshToken).isEmpty()){
+        if(find(refreshToken).isEmpty()){
             throw new RuntimeException("로그인된 사용자가 아닙니다.");
         }
 
